@@ -10,8 +10,6 @@ public class MotSecret {
     // on retourne le résultat de la comparaison
     // du mot proposé avec le mot secret
     public Reponse compareProposition(String essai) {
-        Reponse reponse = new Reponse(motSecret);
-        reponse.compare(essai);
-        return reponse;
+        return Reponse.compare(essai,motSecret);
     }
 }
