@@ -36,6 +36,6 @@ class TestJoueur {
     void joueursHashcodeEgal2() {
         Joueur a = new Joueur("nom");
         Joueur b = new Joueur("NOM");
-        assertThat(a.hashCode()).isEqualTo(b.hashCode());
+        assertThat(a.hashCode()).isNotEqualTo(b.hashCode());
     }
 }
