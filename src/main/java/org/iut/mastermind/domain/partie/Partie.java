@@ -1,5 +1,6 @@
 package org.iut.mastermind.domain.partie;
 
+import com.vtence.molecule.Response;
 import org.iut.mastermind.domain.proposition.MotSecret;
 import org.iut.mastermind.domain.proposition.Reponse;
 
@@ -27,17 +28,17 @@ public class Partie {
 
     // getter joueur
     public Joueur getJoueur() {
-        return null;
+        return joueur;
     }
 
     // getter nombre d'essais
     public int getNbEssais() {
-        return -1;
+        return nbEssais;
     }
 
     // getter mot à deviner
     public String getMot() {
-        return "";
+        return motADeviner;
     }
 
     // si le nombre max d'essais n'est pas atteint,
@@ -46,16 +47,27 @@ public class Partie {
     // si toutes les lettres sont correctement placées,
     // on a terminé la partie
     public Reponse tourDeJeu(String motPropose) {
-        return null;
+        if (isTerminee()){
+            return null;
+        }
+
+        MotSecret motSecret = new MotSecret(motADeviner);
+        Reponse res = motSecret.compareProposition(motPropose);
+        nbEssais++;
+
+        if (res.lettresToutesPlacees() || nbEssais >= NB_ESSAIS_MAX){
+            done();
+        }
+        return res;
     }
 
     // getter pour savoir si la partie est terminée
     public boolean isTerminee() {
-        return false;
+        return partieTerminee;
     }
 
     // indique que la partie est terminée
     void done() {
-        //TBD
+        this.partieTerminee = true;
     }
 }
