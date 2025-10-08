@@ -11,7 +11,7 @@ public class ServiceTirageMot {
 
     // retourne le mot reçu du service nombre aléatoire
     public String tirageMotAleatoire() {
-		// TBD
-        return new String();
+        int nombre = nbAleatoire.next(repository.nbMaxMots());
+        return repository.getMotByIndex(nombre);
     }
 }
